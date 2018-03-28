@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    function dayOfBirth(form) {
+        var d = new Date("1998-05-06");
+        var weekday = new Array(7);
+        weekday[0] =  "неділя";
+        weekday[1] = "понеділок";
+        weekday[2] = "вівторок";
+        weekday[3] = "середа";
+        weekday[4] = "четвер";
+        weekday[5] = "пятниця";
+        weekday[6] = "субота";
+
+        form.num.value = weekday[d.getDay()];
+    }
+    function toStatus(form) {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1;
+
+        if(dd<10) {
+            dd = '0'+dd
+        }
+
+        if(mm<10) {
+            mm = '0'+mm
+        }
+       form.num.value="Сьогодні: "+dd+"/"+mm+"/"+today.getFullYear()+" "+today.getHours()+":"+today.getMinutes();
+    }
+   function clock() {
+       setInterval(function () {
+           var tm=new Date();
+           var h=tm.getHours();
+           var m=tm.getMinutes();
+           var s=tm.getSeconds();
+           m=checkTime(m);
+           s=checkTime(s);
+           document.getElementById('clock').innerHTML=`Годинник ${h}:${m}:${s}`;
+           t=setTimeout('startTime()',500);
+       }, 1000);
+   }
+    function checkTime(i)
+    {
+        if (i<10)
+        {
+            i="0" + i;
+        }
+        return i;
+    }
+    function isNumber(form) {
+        alert(Number.isInteger(parseInt(form.num.value)));
+    }
+    function func(form) {
+        var x=form.x.value;
+        var b=form.b.value;
+        var c=form.c.value;
+        var y=form.y.value;
+        var a=form.a.value;
+        alert((a*x/y)+(b/Math.pow(y,2)*Math.log(y*x+c)));
+    }
+</script>
+<body onload="clock()">
+<form name="form2">Завдання1- сьогоднішня дата
+    <input type="text" name="num" />
+    <button type="button" onclick="toStatus(form2)">Визначити сьогоднішню дату</button>
+</form>
+<form name="form1">Завдання2- визначити день тижня
+    <input type="text" name="num" />
+    <button type="button" onclick="dayOfBirth(form1)">Визначити день тижня</button>
+</form>
+
+<p id="clock">Годинник!!  </p>
+
+<form name="form3">Завдання3- чи є вміст текствого поля числом
+    <input type="text" name="num" />
+    <button type="button" onclick="isNumber(form3)">Визначити чи інпут- число</button>
+</form>
+
+<form name="form4">Завдання4- знаходження значення функції в точці<br>
+    Введіть значення х<input type="text" name="x" /><br>
+    Введіть значення y<input type="text" name="y" /><br>
+    Введіть значення b<input type="text" name="b" /><br>
+    Введіть значення a<input type="text" name="a" /><br>
+    Введіть значення c<input type="text" name="c" />
+    <button type="button" onclick="func(form4)">Визначити</button>
+</form>
+</body>
+</html>

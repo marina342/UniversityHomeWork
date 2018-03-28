@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <script>
+        function isAlpha(name) {
+            return name.match("[a-zA-Z]+");
+        }
+        function check_email(email) {
+           if((email.match("[@]+")!==null)&&email.indexOf("@")<email.indexOf(".")) return true;
+        }
+        function verification(form) {
+            if(isAlpha(form.surname.value)&&isAlpha(form.name.value)&&check_email(form.email.value)&&Number.isInteger(parseInt(form.index.value))&&(form.index.value.length==5)) alert ("Інпути валідні");
+            else alert("Інпути не валідні");
+        }
+        function no_spaces(input) {
+            console.log(input.in.value);
+            var regex=/\s/g;
+            var n=input.in.value.replace(regex,"");
+            alert(n);
+        }
+    </script>
+<body>
+<form name="form"><br>
+    Ім'я<input type="text" name="name" /><br>
+    Прізвище<input type="text" name="surname" /><br>
+    Поштовий індекс<input type="text" name="index" /><br>
+    e-mail<input type="text" name="email" /><br>
+    <button type="button" onclick="verification(form)">Визначити</button>
+</form>
+<form name="input">
+<input type="text" name="in"/>
+<button onclick="no_spaces(input)">Видалити пробіли</button>
+</form>
+</body>
+</html>

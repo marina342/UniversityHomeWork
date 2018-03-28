@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function rev(obj) {
+            alert(obj.numbers.value.split("").reverse().join(""));
+        }
+        function no_zeros(obj) {
+            var regex=/[^1-9]+/g;
+            var n=obj.array.value.replace(regex, "");
+            alert(n);
+        }
+    </script>
+    <form name="form1"> Реверс послідовності
+        <input type="text" name="numbers" />
+        <button onclick="rev(form1)">Визначити</button>
+    </form>
+    <form name="form2"> Масив без нулів
+        <input type="text" name="array"/>
+        <button onclick="no_zeros(form2)">Визначити</button>
+    </form>
+</body>
+</html>

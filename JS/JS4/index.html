@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+       function onClickHandler() {
+           var elem=document.getElementById("image");
+           elem.style.width=document.getElementById("width").value+"px";
+           elem.style.height=document.getElementById("height").value+"px";
+           elem.style.border=document.getElementById("border").value+"px solid red";
+           elem.style.borderColor=document.getElementById("color").value;
+           elem.setAttribute("alt", document.getElementById("alt").value)
+       }
+       function diagram() {
+           var root=document.getElementById("root");
+           root.innerHTML="";
+            var audi=document.getElementById("audi").value;
+            var bmv=document.getElementById("bmv").value;
+            var mers=document.getElementById("mers").value;
+            var vw=document.getElementById("vw").value;
+            var scoda=document.getElementById("scoda").value;
+            var max=Math.max(audi, bmv, mers, vw, scoda);
+            root.innerHTML+=`<div style='display: flex;flex-direction: row; align-items: flex-end'><div style='background-color:red;width:50px;height: ${audi*100/max}px'></div><div style='background-color:yellow;width:50px;height:${bmv*100/max}px'></div><div style='background-color:aqua;width:50px;height: ${mers*100/max}px'></div><div style='background-color:pink;width:50px;height:${vw*100/max}px'></div><div style='background-color:indigo;width:50px;height: ${scoda*100/max}px'></div></div>`
+       }
+</script>
+<body style="display: flex">
+<div style="display: flex;flex-direction: column; width:20%">Зміна властивостей картинки
+        <img src="picture.jpg" id="image"><br>
+        Width<input type="text" id="width"><br>
+        Height<input type="text" id="height"><br>
+        Border<input type="text" id="border"><br>
+        Border color<input type="text" id="color"><br>
+        Alt<input type="text" id="alt"><br>
+        <button onclick="onClickHandler()">Підтвердити</button>
+</div>
+<div style="flex-direction: column;display: flex"> Діаграма проданих авто різних марок
+    <div style="flex-direction: row;display: flex">
+<div>
+    <p>Audi</p>
+    <p>BMW</p>
+    <p>Mercedes</p>
+    <p>Volkswagen</p>
+    <p>Scoda</p>
+</div>
+<div style="display: flex; flex-direction: column; margin-top: 15px">
+    <input type="text" id="audi">
+    <input type="text" style="margin-top: 10px" id="bmv">
+    <input type="text" style="margin-top: 14px" id="mers">
+    <input type="text" style="margin-top: 14px" id="vw">
+    <input type="text" style="margin-top: 10px" id="scoda">
+    <button onclick="diagram()">Побудувати діаграму</button>
+</div>
+    </div>
+    <div id="root"></div>
+</div>
+<div style="display: flex; flex-direction: row; height: 20%">
+    <select>
+        <option value="File">File</option>
+        <option value="File">File</option>
+        <option value="File">File</option>
+        <option value="File">File</option>
+        <option value="File">File</option>
+        <option value="File">File</option>
+    </select>
+    <select>
+        <option value="Edit">Edit</option>
+        <option value="Edit">Edit</option>
+        <option value="Edit">Edit</option>
+        <option value="Edit">Edit</option>
+        <option value="Edit">Edit</option>
+        <option value="Edit">Edit</option>
+    </select>
+    <select>
+        <option value="View">View</option>
+        <option value="Status bar">Status bar</option>
+        <option value="Refresh">Refresh</option>
+        <option value="Encoding">Encoding</option>
+        <option value="Text Size">Text Size</option>
+        <option value="Full Screen">Full Screen</option>
+    </select>
+    <select>
+        <option value="Tools">Tools</option>
+        <option value="Tools">Tools</option>
+    </select>
+    <select>
+        <option value="Help">Help</option>
+    </select>
+</div>
+</body>
+</html>

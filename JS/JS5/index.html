@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+</head>
+<script>
+    $( document ).ready(function() {
+        $( ".digits" ).css({"background-color": "red",
+                            "font-weight":"bold",
+                            "font-style":"italic"});
+    });
+    function onCitySelect() {
+        var regions1=["Голосіївський", "Соломянський", "Святошинський", "Дніпровський", "Деснянський"];
+        var regions2=["Черкаси1", "Черкаси2", "Черкаси3", "Черкаси4", "Черкаси5"];
+        var regions3=["Львів1", "Львів2", "Львів3", "Львів4", "Львів5"];
+        var regions4=["Івано-Франківськ1", "Івано-Франківськ2", "Івано-Франківськ3", "Івано-Франківськ4", "Івано-Франківськ5"];
+        var regions5=["Тернопіль1", "Тернопіль2", "Тернопіль3", "Тернопіль4", "Тернопіль5"];
+        var res=document.getElementById("regions");
+        switch (document.getElementById("cities").selectedIndex){
+            case 0:regions1.map((item, index)=>{res.options[index]=new Option(item, item)});break;
+            case 1:regions2.map((item, index)=>{res.options[index]=new Option(item, item)});break;
+            case 2:regions3.map((item, index)=>{res.options[index]=new Option(item, item)});break;
+            case 3:regions4.map((item, index)=>{res.options[index]=new Option(item, item)});break;
+            case 4:regions5.map((item, index)=>{res.options[index]=new Option(item, item)});break;
+        }
+        console.log(res.options);
+    }
+    function onChangeHandler() {
+        if(document.getElementById("select").selectedIndex!=0)document.getElementById("btn").disabled=true;
+        else document.getElementById("btn").disabled=false;
+    }
+    function onCheckHandler() {
+        var data=[];
+        Array.prototype.forEach.call(document.getElementsByClassName("input"), (item, index)=>{
+            if(item.checked) data[index]=parseInt(item.getAttribute("data-price"));
+        });
+        document.getElementById("result").innerHTML="Загальна вартість: "+ data.reduce((prev,item) =>{return prev+item});
+    }
+    </script>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+    </style>
+<body onload="onCitySelect()">
+<select id="select" onchange="onChangeHandler()">
+    <option>Option</option>
+    <option>Option</option>
+    <option>Option</option>
+    <option>Option</option>
+    <option>Option</option>
+    <option>Option</option>
+    <option>Option</option>
+    <option>Option</option>
+    <option>Option</option>
+    <option>Option</option>
+</select>
+<button id="btn">Кнопка</button>
+<select id="cities" onchange="onCitySelect()">
+    <option>Київ</option>
+    <option>Черкаси</option>
+    <option>Львів</option>
+    <option>Івано-Франківськ</option>
+    <option>Тернопіль</option>
+</select>
+<select id="regions"></select>
+<table>
+    <tr>
+        <td></td>
+        <td>Назва товару</td>
+        <td>Виробник</td>
+        <td class="digits">Ціна</td>
+    </tr>
+    <tr>
+        <td><input class="input" type="checkbox" data-price="140" onchange="onCheckHandler()"></td>
+        <td>Маргарита</td>
+        <td>Dominos</td>
+        <td class="digits">140</td>
+    </tr>
+    <tr>
+        <td><input  class="input" type="checkbox" data-price="110" onchange="onCheckHandler()"></td>
+        <td>Гавайська</td>
+        <td>Dominos</td>
+        <td class="digits">110</td>
+    </tr>
+    <tr>
+        <td><input class="input" type="checkbox" data-price="150" onchange="onCheckHandler()"></td>
+        <td>Карбонара</td>
+        <td>Dominos</td>
+        <td class="digits">150</td>
+    </tr>
+    <tr>
+        <td><input class="input" type="checkbox"data-price="145" onchange="onCheckHandler()"></td>
+        <td>5 сирів</td>
+        <td>Dominos</td>
+        <td class="digits">145</td>
+    </tr>
+    <tr>
+        <td><input class="input" type="checkbox"data-price="130" onchange="onCheckHandler()"></td>
+        <td>Техас</td>
+        <td>Dominos</td>
+        <td class="digits">130</td>
+    </tr>
+    <tr>
+        <td><input  class="input" type="checkbox"data-price="155" onchange="onCheckHandler()"></td>
+        <td>Пепероні</td>
+        <td>Dominos</td>
+        <td class="digits">155</td>
+    </tr>
+    <tr><td id ="result" colspan="4" >Загальна вартість: </td></tr>
+</table>
+</body>
+</html>

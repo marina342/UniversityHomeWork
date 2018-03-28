@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+</head>
+<style>
+    .options{
+        display: none;
+        position: absolute;
+
+    }
+    #forFile p, #forEdit p, #forView p, #forFav p, #forTools p, #forHelp p{
+        background-color: indigo;
+        border: 3px solid gold;
+        color: white;
+        font-weight: bolder;
+    }
+    .menu div{
+        background-color: indigo;
+        color: white;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    .list div{
+        margin-right: 12px;
+    }
+    .list div p{
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<script>
+    function showOptions(event) {
+        var target = event.target;
+        $("[id^='for']").slideUp();
+        if (target.id == 'File')$("#forFile").css({"left":"0"}).slideToggle();
+        if (target.id == 'Edit')$("#forEdit").css({"left":"35px"}).slideToggle();
+        if (target.id == 'View')$("#forView").css({"left":"73px"}).slideToggle();
+        if (target.id == 'Fav')$("#forFav").css({"left":"120px"}).slideToggle();
+        if (target.id == 'Tools')$("#forTools").css({"left":"195px"}).slideToggle();
+        if (target.id == 'Help')$("#forHelp").css({"left":"240px"}).slideToggle();
+    }
+    function diagram() {
+        var root= $("#root");
+        root.hide();
+        root.innerHTML="";
+        var audi=$("#audi").val();
+        var bmv=$("#bmv").val();
+        var mers=$("#mers").val();
+        var vw=$("#vw").val();
+        var scoda=$("#scoda").val();
+        var max=Math.max(audi, bmv, mers, vw, scoda);
+        root[0].innerHTML=`<div style='display: flex;flex-direction: row; align-items: flex-end'><div style='background-color:red;width:50px;height: ${audi*100/max}px'></div><div style='background-color:yellow;width:50px;height:${bmv*100/max}px'></div><div style='background-color:aqua;width:50px;height: ${mers*100/max}px'></div><div style='background-color:pink;width:50px;height:${vw*100/max}px'></div><div style='background-color:indigo;width:50px;height: ${scoda*100/max}px'></div></div>`;
+        root.slideDown();
+    }
+    </script>
+<body style="display: flex">
+<div style="flex-direction: column;display: flex; margin-right: 20px"> Діаграма проданих авто різних марок
+    <div style="flex-direction: row;display: flex">
+        <div>
+            <p>Audi</p>
+            <p>BMW</p>
+            <p>Mercedes</p>
+            <p>Volkswagen</p>
+            <p>Scoda</p>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-top: 15px">
+            <input type="text" id="audi">
+            <input type="text" style="margin-top: 10px" id="bmv">
+            <input type="text" style="margin-top: 14px" id="mers">
+            <input type="text" style="margin-top: 14px" id="vw">
+            <input type="text" style="margin-top: 10px" id="scoda">
+            <button onclick="diagram()">Побудувати діаграму</button>
+        </div>
+    </div>
+    <div id="root"></div>
+</div>
+<div style="display: flex; flex-direction: column">
+    <div class="menu" style="display: flex; flex-direction: row; height: 10%" onclick="showOptions.call(this, event)">
+        <div id="File">File</div>
+        <div id="Edit">Edit</div>
+        <div id="View">View</div>
+        <div id="Fav">Favorities</div>
+        <div id="Tools">Tools</div>
+        <div id="Help">Help</div>
+    </div>
+    <div style="display:flex;flex-direction: row; position: relative">
+    <div id="forFile" class="options" >
+        <p>File</p>
+        <p>File</p>
+        <p>File</p>
+        <p>File</p>
+        <p>File</p>
+    </div>
+    <div id="forEdit"  class="options" >
+        <p>Edit</p>
+        <p>Edit</p>
+        <p>Edit</p>
+        <p>Edit</p>
+        <p>Edit</p>
+    </div>
+    <div id="forView"  class="options" >
+        <p>View</p>
+        <p>View</p>
+        <p>View</p>
+        <p>View</p>
+        <p>View</p>
+    </div>
+    <div id="forFav"   class="options">
+        <p>Fav</p>
+        <p>Fav</p>
+        <p>Fav</p>
+        <p>Fav</p>
+        <p>Fav</p>
+    </div>
+    <div id="forTools" class="options" >
+        <p>Tools</p>
+        <p>Tools</p>
+        <p>Tools</p>
+        <p>Tools</p>
+        <p>Tools</p>
+    </div>
+    <div id="forHelp"  class="options" >
+        <p>Help</p>
+        <p>Help</p>
+        <p>Help</p>
+        <p>Help</p>
+        <p>Help</p>
+    </div>
+    </div>
+</div>
+</body>
+</html>
